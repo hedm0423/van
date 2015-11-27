@@ -1,0 +1,118 @@
+/* CSS Document */
+
+body{  font: 12px Arial,Tahoma,  Helvetica, sans-serif;  margin:0; padding:0;color:#4C4C4C; }
+img{ border:0;}
+.left_button{
+  border-top-width:0;
+  border-left-width:0;
+  border-right-width:0;
+  border-bottom-width:0;
+  border-style:solid;
+  height:30px;
+  width:120px;
+  font-size: 12px; 
+  font-weight:bold;
+  background:#F8F8F8;
+  color:#464646;
+}
+
+.cx_button{
+  border-top-width:0;
+  border-left-width:0;
+  border-right-width:0;
+  border-bottom-width:0;
+  border-style:solid;
+  height:20px;
+  width:26px;
+  background:url(../images/pic_27.jpg);
+  cursor:pointer;
+}
+
+.login_input{
+  border-top-width:1px;
+  border-left-width:1px;
+  border-right-width:1px;
+  border-bottom-width:1px;
+  border-style:solid;
+  height:20px;
+  width:130px;
+}
+.login_btn{
+  border-top-width:1px;
+  border-left-width:1px;
+  border-right-width:1px;
+  border-bottom-width:1px;
+  border-style:solid;
+  background:#DFF0F9;
+  border-color:#919191;
+  height:22px;
+  width:80px;
+}
+
+
+.add_button{
+ border-top-width:0;
+ border-left-width:0;
+ border-right-width:0;
+ border-bottom-width:0;
+  border-style:solid; 
+  background:#FFFFFF;
+  cursor:pointer;
+}
+
+.add_button1{
+   border-top-width:0;
+   border-left-width:0;
+   border-right-width:0;
+   border-bottom-width:0;
+   PADDING-TOP: 6px; 
+   text-align:center;
+   color:#555555;
+   font-weight:bold;
+   background:url(../images/add_button.jpg);
+   height:20px;
+   width:135px; 
+   cursor:pointer;
+
+}
+
+.table_1{
+ border-top-width:1px;
+ border-left-width:1px;
+ border-right-width:1px;
+ border-bottom-width:1px;
+ border-style:solid;
+}
+
+.table_2{
+ border-top-width:0;
+ border-left-width:0;
+ border-right-width:0;
+ border-bottom-width:1px;
+ border-style:solid;
+ height:15px;
+ background:#EBEBEB;
+ color:#464646;
+}
+
+
+
+a:link {color:#4C4C4C;text-decoration:none;font-size: 12px;}
+a:visited {color:#4C4C4C ;text-decoration: none;font-size: 12px;}
+a:hover {color:#2E85DC ;text-decoration:underline;font-size: 12px;}
+a:active {color:#4C4C4C ;text-decoration: none;font-size: 12px;}
+
+.link1:link {color:#991802;text-decoration:none;font-size: 12px;}
+.link1:visited {color:#991802 ;text-decoration: none;font-size: 12px;}
+.link1:hover {color:#2E85DC ;text-decoration:underline;font-size: 12px;}
+.link1:active {color:#991802 ;text-decoration: none;font-size: 12px;}
+
+.dele_link:link {color:#991802;text-decoration:none;font-size: 12px;}
+.dele_link:visited {color:#991802 ;text-decoration: none;font-size: 12px;}
+.dele_link:hover {color:#FF0000;text-decoration:underline;font-size: 12px;}
+.dele_link:active {color:#991802 ;text-decoration: none;font-size: 12px;}
+
+
+#top{ background:url(../images/head_bg.gif); width:100%; height:77px; margin-bottom:1px;}
+
+.logo{ float:left; background:url(../images/logo.gif) no-repeat; width:194px; height:45px; margin-left:49px; margin-top:18px;}

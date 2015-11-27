@@ -1,0 +1,80 @@
+<?php
+ error_reporting(0);
+ $main_id='4';
+ include ("top.php");
+?>
+    <div id="left"><?php include ("left.php");?></div>
+    <div id="right">
+	  <?php include ("header.php");?>
+	  <div id="about">
+	    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="180" rowspan="2" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+               <tr>
+                 <td width="180" height="170" valign="top">
+				   <div style="width:100%; height:25px; margin-top:25px; font-size:12px; color:#FF3300; font-weight:bold;">+&nbsp;∑÷¿‡‰Ø¿¿</div>
+				   <div id="nav2">
+				     <ul>
+<?php
+  $sql_nav2="select * from nav where up_id='$main_id' order by id asc";
+  $res_nav2=mysql_query($sql_nav2);
+  while($rows_nav2=mysql_fetch_array($res_nav2)){
+?>
+					   <li><a href="<?=$rows_nav2['link']?>"><STRONG>°µ</STRONG><?=u2g($rows_nav2['name'])?></a></li>
+<?php }?>					  
+					 </ul>
+				   </div></td></tr></table></td>
+            <td width="35" rowspan="2" valign="top">&nbsp;</td>
+            <td width="565" height="170" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="565" height="170" valign="top" class="style2">
+<?php
+  $sql_1="select * from news where news_class='$main_id' order by id desc";
+  $res_1=mysql_query($sql_1);
+  $rows_1=mysql_fetch_array($res_1);
+?>
+				
+				<p>
+				<span style="color:#FF3300"><b><?=u2g($rows_1['title'])?> </b></span><br>
+                    <br>
+                    <?=u2g($rows_1['cont'])?> 
+					</p>
+                  
+				  
+				  
+				  </td>
+              </tr>
+          </table></td>
+        </tr></table>	  
+<?php
+  $sql="select * from news where news_class1='$main_id' order by id asc";
+  $res=mysql_query($sql);
+  while($rows=mysql_fetch_array($res)){
+  $img_arr=explode ('/',$rows['img']);
+  $fold="img/";
+?>	  
+	    <div style="margin-top:20px;">
+	    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="180" rowspan="2" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+               <tr>
+                 <td width="180" valign="top">
+			     <div id="img1"><img src="<?php echo $fold.$img_arr[0];?>" /></div></td>
+               </tr></table></td>
+            <td width="35" rowspan="2" valign="top">&nbsp;</td>
+            <td width="565"  valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="565" valign="top">
+			  	  <p>
+		  	      <div class="title"><?=u2g($rows['title'])?></div><br>
+			  	    <div style="line-height:20px;"><?=u2g($rows['cont'])?></div><br>
+			  	  </p>                </td>
+              </tr>
+          </table></td>
+        </tr></table></div>  
+<?php }?>	  
+<?php include ("footer.php");?>
+	  </div>
+	</div>
+</body>
+</html>

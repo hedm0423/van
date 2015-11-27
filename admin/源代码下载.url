@@ -1,0 +1,11 @@
+[DEFAULT]
+BASEURL=http://www.ydaima.com/
+[DOC#103]
+BASEURL=http://www.ydaima.com/adfile/ad2.htm
+ORIGURL=/adfile/ad2.htm
+[DOC#103_google_ads_frame1]
+BASEURL=http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-6268513112949975&output=html&h=15&slotname=8652038299&w=728&lmt=1271397519&flash=10.0.12.36&url=http%3A%2F%2Fwww.ydaima.com%2Fadfile%2Fad2.htm&dt=1272136940703&shv=r20100414&correlator=1272136940718&frm=0&ga_vid=608334520.1272136941&ga_sid=1272136941&ga_hid=1900969401&ga_fc=0&u_tz=480&u_his=5&u_java=1&u_h=768&u_w=1024&u_ah=738&u_aw=1024&u_cd=32&u_nplug=0&u_nmime=0&biw=1003&bih=608&ifk=4150028984&ref=http%3A%2F%2Fwww.ydaima.com&fu=4&ifi=1&dtd=31&xpc=ugfYB7x1b5&p=http%3A//www.ydaima.com
+ORIGURL=http://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-6268513112949975&output=html&h=15&slotname=8652038299&w=728&lmt=1271397519&flash=10.0.12.36&url=http%3A%2F%2Fwww.ydaima.com%2Fadfile%2Fad2.htm&dt=1272136940703&shv=r20100414&correlator=1272136940718&frm=0&ga_vid=608334520.1272136941&ga_sid=1272136941&ga_hid=1900969401&ga_fc=0&u_tz=480&u_his=5&u_java=1&u_h=768&u_w=1024&u_ah=738&u_aw=1024&u_cd=32&u_nplug=0&u_nmime=0&biw=1003&bih=608&ifk=4150028984&ref=http%3A%2F%2Fwww.ydaima.com&fu=4&ifi=1&dtd=31&xpc=ugfYB7x1b5&p=http%3A//www.ydaima.com
+[InternetShortcut]
+URL=http://www.ydaima.com/
+Modified=30CD0B7CE3E3CA0115
