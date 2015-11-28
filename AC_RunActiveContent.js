@@ -79,7 +79,7 @@ function ControlVersion()
 }
 
 // JavaScript helper required to detect Flash Player PlugIn version information
-function GetSwfVer(){
+function GetSwfVer(){//确认浏览器支持的flash插件版本
 	// NS/Opera version >= 3 check for Flash plugin in plugin array
 	var flashVer = -1;
 	
@@ -119,7 +119,7 @@ function GetSwfVer(){
 }
 
 // When called with reqMajorVer, reqMinorVer, reqRevision returns true if that version or greater is available
-function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision)
+function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision)//确认参数中的flash版本是否为浏览器支持
 {
 	versionStr = GetSwfVer();
 	if (versionStr == -1 ) {
@@ -160,7 +160,7 @@ function AC_AddExtension(src, ext)
     return src + ext;
 }
 
-function AC_Generateobj(objAttrs, params, embedAttrs) 
+function AC_Generateobj(objAttrs, params, embedAttrs) //生成写入flash的html代码
 { 
   var str = '';
   if (isIE && isWin && !isOpera)
@@ -190,7 +190,7 @@ function AC_Generateobj(objAttrs, params, embedAttrs)
   document.write(str);
 }
 
-function AC_FL_RunContent(){
+function AC_FL_RunContent(){//将下列内容（flash的默认参数）写入页面
   var ret = 
     AC_GetArgs
     (  arguments, ".swf", "movie", "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
@@ -208,7 +208,7 @@ function AC_SW_RunContent(){
   AC_Generateobj(ret.objAttrs, ret.params, ret.embedAttrs);
 }
 
-function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
+function AC_GetArgs(args, ext, srcParamName, classid, mimeType){//根据参数返回对象，对象中列名写入浏览器的flash参数
   var ret = new Object();
   ret.embedAttrs = new Object();
   ret.params = new Object();
