@@ -6,7 +6,9 @@
 	    电子邮箱(Email):van000oto@163.com<br>
       公司地址：深圳0000路2001号xxxx庭A座28楼
 
+<!--
 <div style="text-align:right"><a href="http://www.cdujz.com" target="_blank" style="color:#000; text-decoration:none;">成都建站</a>提供技术支持</div>
+-->
 	  <div></div>
       
 	  </div>

@@ -15,6 +15,7 @@ function ChgTitle($title,$len)
   return $title; 
 }  
 
+/*找出$str中以$start开头，以$end结尾的子字符串（只能找第一个出现的$start和$end）*/
 function Strsubstr($str,$start,$end)
 {
   $startIndex = strpos(strtolower($str), $start);
@@ -24,6 +25,7 @@ function Strsubstr($str,$start,$end)
   return $result;
 }
 
+/*中文截断*/
 function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true)
 {
 	if(function_exists("mb_substr"))

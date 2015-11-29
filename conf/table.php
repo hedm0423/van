@@ -1,10 +1,10 @@
 <?php
-$login_table="superadmin";
-$nav_table="nav";
-$jbinfo_table="jbinfo";
-$news_table="news";
-$jd_table="jd";
-$pro_table="product";
-$gbook_table="guest";
-$case_table="case1";
-?>
+  $login_table="superadmin";
+  $nav_table="nav";
+  $jbinfo_table="jbinfo";
+  $news_table="news";
+  $jd_table="jd";
+  $pro_table="product";
+  $gbook_table="guest";
+  $case_table="case1";
+  ?>
