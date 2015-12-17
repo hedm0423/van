@@ -6,13 +6,13 @@
 if ($bs=="re"){
   $sql1="update $gbook_table set address='$address' where id='$id1'";
   //echo "sql1:".$sql1;
-  $res1=mysql_query($sql1);
+  $res1=mysqli_query($conn,$sql1);
 }
   
   
   $sql="select * from $table  where id='$id'";
-  $res=mysql_query($sql,$conn);
-  $rows=mysql_fetch_array($res);
+  $res=mysqli_query($conn,$sql);
+  $rows=mysqli_fetch_array($res);
   $pic1="../images/boy.gif";
   $pic2="../images/girl.gif";
   if($rows['sex']=='1')$pic=$pic1;else $pic=$pic2;
@@ -29,7 +29,7 @@ if ($bs=="re"){
 
 <body style="margin:0">
 <?php
-  if($res1)
+  if($res1 != null)
     echo "回复成功";
 ?>
 <form name="form1" action="?bs=re" method="post" enctype="multipart/form-data"  >

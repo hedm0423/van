@@ -6,7 +6,7 @@
   $table=$news_table;
   if ($bs=="dele" && $did){
     $query="delete from $table where id='$did' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
   if ($news_class && ($cx=='' || empty($cx))){
     $news_class=trim($news_class); 
@@ -58,18 +58,18 @@
 	  
 <?php
     $sql="select * from $table $tj";
-    $res=mysql_query($sql);
-    $total=mysql_num_rows($res);
+    $res=mysqli_query($conn,$sql);
+    $total=mysqli_num_rows($res);
     pageft($total,15);
     $sql="select * from $table $tj order by id desc limit $firstcount,$displaypg ";
 	//echo $sql;
-    $res=mysql_query($sql,$conn);
-    if (strlen($res)==0){
+    $res=mysqli_query($conn,$sql);
+    if (mysqli_num_rows($res)==0){
      // echo "没有 ";if ($news_class)echo "<".name($news_class).">";echo " 此类数据";
 	}  
     else	
    
-  while ($rows=mysql_fetch_array($res)){
+  while ($rows=mysqli_fetch_array($res)){
 ?>
     <tr bgcolor="#EFEFEF">
       <td height="23" align="left" bgcolor="#FFFFFF" style="padding-left:5px;"><?php echo "<b>".name($nav_table,$rows['news_class1'])."</b>>".name($nav_table,$rows['news_class'])?></td>

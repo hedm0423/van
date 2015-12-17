@@ -6,17 +6,17 @@
   $table=$pro_table;
   if ($bs=="dele" && $did){
     $query="delete from $table where id='$did' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
 
   if ($bs==1){
     $query="delete from $table where id='$id' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
   if ($pro_class){
     $pro_class_arr=explode(',',$pro_class);
 	if ($pro_class_arr[1]==2)
-      $tj=" where pro_class1='".$pro_class_arr[0]."' and pro_class<>''";
+      $tj=" where pro_class='".$pro_class_arr[0]."' and pro_class1<>''";
 	elseif($pro_class_arr[1]==3)
       $tj=" where pro_class='".$pro_class_arr[0]."' and pro_class1<>''";
   }	
@@ -58,21 +58,21 @@
 <?php
   $sql="select * from $table $tj";
   //echo $sql;
-  $res=mysql_query($sql,$conn);
-  $total=mysql_num_rows($res);
+  $res=mysqli_query($conn,$sql);
+  $total=mysqli_num_rows($res);
   pageft($total,15);
   $sql="select * from $table $tj order by id desc limit $firstcount,$displaypg ";
-  $res=mysql_query($sql,$conn);
-  if (strlen($res)==0)
+  $res=mysqli_query($conn,$sql);
+  if (!$res or mysqli_num_rows($res)==0)
     echo "没有此类数据";
   else	
    
-  while ($rows=mysql_fetch_array($res))
+  while ($rows=mysqli_fetch_array($res))
   {
 ?>
     <tr bgcolor="#EFEFEF">
       <td height="25" align="left" style="padding-left:2px;" bgcolor="#FFFFFF">
-	  <?php echo "<b>".name($nav_table,$rows['pro_class1'])."</b>"." <span style='font-weight:blod;color:red'>></span> ";?>
+	  <?php echo "<b>".name($nav_table,$rows['pro_class1'])."</b>"." <span style='font-weight:bold;color:red'>></span> ";?>
 	  <?php if ($rows['pro_class1']==$rows['pro_class']){}else{echo name($nav_table,$rows['pro_class']);}?></td>
       <td align="center" bgcolor="#FFFFFF"><?php echo $rows['name']?></a></td>
       <td align="center" bgcolor="#FFFFFF"><?php echo substr($rows['uptime'],0,10);?></td>

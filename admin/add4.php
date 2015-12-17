@@ -5,9 +5,9 @@ include ('../conf/function.php');
 $table=$news_table;
 if ($id){
   $sql_cx="select * from $table where news_class1='$id' or news_class='$id' order by id desc limit 0,1";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
-  $rows_cx_num=mysql_num_rows($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
+  $rows_cx_num=mysqli_num_rows($res_cx);
   if ($rows_cx_num)
     $bs='mnews';
   else{
@@ -24,7 +24,7 @@ if ($bs1=='addnews'){
     $news_class_arr[1]=$news_class_arr[0];
 
   $sql_add="insert into $table (id,news_class,news_class1,title,title1,cont,cont1,auth,copyfrom,img,uptime,read_count)  values(null,'$id','','','','$cont','$cont1','','','$img','$uptime','')";
-  $res_add=mysql_query($sql_add);
+  $res_add=mysqli_query($conn,$sql_add);
   //echo  $sql_add;
   //echo mysql_error();
   if ($res_add){
@@ -38,7 +38,7 @@ else if ($bs1=='mnews'){
   $cont=$_POST['FCKeditor1'];
   $sql_modify="update $table set cont='$cont',cont1='$cont1',uptime='$uptime',img='$img' where news_class='$id'";
   // echo  $sql_modify;
- $res_modify=mysql_query($sql_modify);
+ $res_modify=mysqli_query($conn,$sql_modify);
   if ($res_modify){
     echo "成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=news1.php'>";

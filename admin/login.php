@@ -10,8 +10,8 @@
 	$_SESSION['password']=$password;
     if ($username && $password){
       $sql = "select * from $login_table where username='$username' and password='$password'";
-	  $res = mysql_query($sql);
-	  $rows=mysql_num_rows($res);
+	  $res = mysqli_query($conn,$sql);
+	  $rows=mysqli_num_rows($res);
 	  if ($rows){
 	    $date = mktime(date("H")+8,date("i"),date("s"),date("m"),date("d"), date("Y")); 
 	    $time=date("Y-m-d H:i:s",$date);

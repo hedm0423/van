@@ -12,7 +12,7 @@ if ($getXMLOrder){
   for($i=0;$i<=$xh1-1;$i++){
     $str2=explode(',',trim($str1[$i]));
 	$sql1="update $table set sx='$str2[0]' where id='$str2[1]'";
-	$res1=mysql_query($sql1);
+	$res1=mysqli_query($conn,$sql1);
 	//if ($res1)echo $sql1."<br>";
   }
 }
@@ -80,8 +80,8 @@ function getSelectOrder(obj) {
 <select name="selectName" size="20" style="width:200px;"> 
 <?php 
 $sql="select * from $table where level='$level' and up_id='$up_id' order by sx asc";
-$res=mysql_query($sql);
-while($rows=mysql_fetch_array($res)){
+$res=mysqli_query($conn,$sql);
+while($rows=mysqli_fetch_array($res)){
 ?>
   <option value="<?=$rows['id']?>"><?=$rows['name']?><?php echo "(".$rows['sx'].")"?></option> 
 <?php }?>

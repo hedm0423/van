@@ -4,24 +4,24 @@
   
 if ($bs=="add"){
 $sql_s="select * from $jbinfo_table";
-$res_s=mysql_query($sql_s);
-$total=mysql_num_rows($res_s);
+$res_s=mysqli_query($conn,$sql_s);
+$total=mysqli_num_rows($res_s);
 if ($total==0){
   $sql="insert into $jbinfo_table (id,title,gjz,ms,notice,link) values(null,'$title','$gjz','$ms','$notice','link')";
   //echo $sql;
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
 }
 else{
   $sql="update $jbinfo_table set title='$title',gjz='$gjz',ms='$ms',notice='$notice',link='$link' ";
   //echo $sql;
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
 }
 }  
   
   
 $sql_jb="select * from $jbinfo_table order by id desc limit 0 ,10";
-$res_jb=mysql_query($sql_jb);
-$rows_jb= mysql_fetch_array($res_jb);
+$res_jb=mysqli_query($conn,$sql_jb);
+$rows_jb= mysqli_fetch_array($res_jb);
 $title_index=$rows_jb['title'];  
 $gjz=$rows_jb['gjz'];  
 $ms=$rows_jb['ms']; 

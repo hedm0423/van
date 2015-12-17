@@ -6,9 +6,9 @@ $table=$pro_table;
 if ($pro_class){
   $sql_cx="select * from $table where pro_class='$pro_class' and pro_class1=''";
   //echo $sql_cx;
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
-  $hs=mysql_num_rows($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
+  $hs=mysqli_num_rows($res_cx);
   if ($hs){
     $bs='mnews';
   }
@@ -18,9 +18,9 @@ if ($pro_class){
 }
 elseif ($pro_class1=='' && $pro_class==''){
   $sql_cx="select * from $table where pro_class='' and pro_class1='' order by id desc limit 0,1";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
-  $hs=mysql_num_rows($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
+  $hs=mysqli_num_rows($res_cx);
   if ($hs){
     $bs='mnews';
   }
@@ -34,9 +34,9 @@ if ($bs1=='addnews'){
   $uptime=date("Y-m-d"." "."h:i:s");
   $img=$_POST['pp'];
   $sql_add="insert into $table (id,pro_class,pro_class1,name,cont,img,uptime)  values(null,'$pro_class','','','','$img','$uptime')";
-  $res_add=mysql_query($sql_add);
+  $res_add=mysqli_query($conn,$sql_add);
   echo $sql_add;
-  echo mysql_error();
+  echo mysqli_error();
   if ($res_add){
     echo "添加成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=pro_class.php'>";
@@ -47,7 +47,7 @@ else if ($bs1=='mnews'){
   $img=$_POST['pp'];
   $sql_modify="update $table set img='$img' where  pro_class='$pro_class' and pro_class1=''";
   echo $sql_modify;
- $res_modify=mysql_query($sql_modify);
+ $res_modify=mysqli_query($conn,$sql_modify);
   if ($res_modify){
     echo "修改成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=pro_class.php'>";

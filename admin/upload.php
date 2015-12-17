@@ -39,7 +39,7 @@ if ($bs=="add"){
 echo $up1_name;
       if(copy($upfile,$filepath.$up1_name)) {
         $sql_add="insert into down (id,title,uptime,upname,down_class) values(null,'$title','$uptime','$up1_name','$down_class')";
-        $res_add=mysql_query($sql_add);
+        $res_add=mysqli_query($conn,$sql_add);
         echo "1文件". $upfile_name." 已上载成功！";
         echo "<br><br>\n";
         echo "文件位置：$fileName";
@@ -88,7 +88,7 @@ elseif ($bs=="modify"){
     if(!file_exists($fileName)) { 
       if(copy($upfile,$filepath.$upfile_name)) {
         $sql_up="update down set title='$title',upname='$upfile_name',down_class='$down_class' where id='$id'";
-        $res_up=mysql_query($sql_up);
+        $res_up=mysqli_query($conn,$sql_up);
         //echo "sql_up1: ".$sql_up;
         echo "1文件". $upfile_name." 已上载成功！";
         echo "<br><br>\n";
@@ -107,7 +107,7 @@ elseif ($bs=="modify"){
   } 
   else{
     $sql_up="update down set title='$title' where id='$id'";
-    $res_up=mysql_query($sql_up);
+    $res_up=mysqli_query($conn,$sql_up);
     //echo "sql_up2: ".$sql_up;
     if ($res_up){
       echo "<meta HTTP-EQUIV='REFRESH' CONTENT='2; URL=down.php'>";
@@ -119,8 +119,8 @@ elseif ($bs=="modify"){
 <?php
 if ($id){
   $sql="select * from down where id='$id'";
-  $res=mysql_query($sql);
-  $rows=mysql_fetch_array($res);
+  $res=mysqli_query($conn,$sql);
+  $rows=mysqli_fetch_array($res);
   $title=$rows['title'];
   $up1_name=$rows['upname'];
 }
@@ -141,8 +141,8 @@ if ($id){
 		    <option>--请选择下载栏目--</option>
 <?php
 $sql_1="select * from $nav_table where type1='down' and level='2'";
-$res_1=mysql_query($sql_1);
-while($rows_1=mysql_fetch_array($res_1)){
+$res_1=mysqli_query($conn,$sql_1);
+while($rows_1=mysqli_fetch_array($res_1)){
 ?>
 		    <option value="<?=$rows_1['id']?>" <?php if($rows['down_class']==$rows_1['id'])echo "selected='selected'";?>><?=$rows_1['name']?></option>
 <?php }?>

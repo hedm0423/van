@@ -14,10 +14,9 @@ define('ROOT_PATH', '../');
 
 <SCRIPT language="JAVASCRIPT" src="js/MenuDefine.js">
 </SCRIPT>
-<FONT color=#ffffff>
-<CENTER>
+<!--<FONT color=#ffffff>
+<CENTER>-->
 <SCRIPT language="JAVASCRIPT">
-
 OutBarFolder1=new Array('网站设置',
 './images/Menu/backup.gif','分类管理','top.frame1.location.href="./nav.php";//javascript',"window",
 './images/Menu/backup.gif','焦点图轮换','top.frame1.location.href="./jd.php";//javascript',"window",
@@ -43,15 +42,18 @@ OutBarFolder4=new Array('作品管理',
 OutBarFolder5=new Array('留言管理',
 './images/Menu/backup.gif','留言列表','top.frame1.location.href="./guestbook.php";//javascript',"window");
 
-
 OutBarFolder6=new Array('退出系统');
 </SCRIPT>
-
-<SCRIPT language="JAVASCRIPT">
-if (document.all){
+<script language="javascript">
   document.write('<script src="js/Outbar.js"><\/script>');
-}
+</script>
+<!--<SCRIPT language="JAVASCRIPT">
+/*if (!document.all) {
+  document.write('<script src="js/Outbar.js"><\/script>');
+}*/
+
+document.write('<script src="js/Outbar.js"><\/script>');
 </SCRIPT>
-</CENTER></FONT>
+<!--</CENTER></FONT>-->
 </BODY>
 </HTML>

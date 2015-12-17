@@ -6,7 +6,7 @@
   $table=$case_table;
   if ($bs=="dele" && $did){
     $query="delete from $table where id='$did' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,18 +48,18 @@
     $tj=" ";	
     $sql="select * from $table $tj";
 	//echo $sql;
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
     if ($res)
-	  $total=mysql_num_rows($res);
+	  $total=mysqli_num_rows($res);
     pageft($total,12);
     $sql="select * from $table $tj order by id desc limit $firstcount,$displaypg ";
-    $res=mysql_query($sql,$conn);
+    $res=mysqli_query($conn,$sql);
     if (strlen($res)==0){
       echo "没有此类数据";
 	}  
     else	
    
-  while ($rows=mysql_fetch_array($res)){
+  while ($rows=mysqli_fetch_array($res)){
   $img_arr=explode('/',$rows['img']);
   $flod="../img/";
   $img_url=$flod.$img_arr[0];

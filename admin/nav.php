@@ -49,14 +49,14 @@ function form_sub(v1,v2){
 
 #查询
   $sql_cx="select * from $table $tj order by id asc";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
 
 #添加
   if ($bs=="add" && $name){
 $sql_1="select * from $table where level='$level' and up_id='$up_id' order by id desc limit 0,1";
-$res_1=mysql_query($sql_1);  
-$rows_1=mysql_fetch_array($res_1);
+$res_1=mysqli_query($conn,$sql_1);
+$rows_1=mysqli_fetch_array($res_1);
 $sx=$rows_1['sx']+1;
 //echo "id: ".$sx;
   
@@ -73,7 +73,7 @@ else
   
   
     $sql_add="insert into $table (id,up_id,name,link,level,type1,show1,sx)  values(null,'$up_id','$name','$link','$level','$type1','2','$sx')";
-	$res_add=mysql_query($sql_add);
+	$res_add=mysqli_query($conn,$sql_add);
 	//echo "sql_add: ".mysql_error();
 	//echo "sql_add: ".$sql_add;
 	if ($res_add){
@@ -85,7 +85,7 @@ else
 #修改  
   if ($bs=="modify" && $mid){
     $sql_modify="update $table set name='$name',link='$link' where id='$mid'";
-	$res_modify=mysql_query($sql_modify);
+	$res_modify=mysqli_query($conn,$sql_modify);
 	if ($res_modify){
 	  $ok_message= "MODIFY is OK !!!";
 	}
@@ -109,7 +109,7 @@ else
   if ($bs=='type_modify' && $tid && $type1){
     $sql_mk="update $table set type1='$type1' where id='$tid'";
 	//echo $sql_mk;
-	$res_mk=mysql_query($sql_mk);
+	$res_mk=mysqli_query($conn,$sql_mk);
 	if ($res_mk){
 	  $ok_message="模块选择成功!";
 	}
@@ -154,8 +154,8 @@ else
     </tr>
 <?php
   $sql="select * from $table $tj order by sx,id asc";
-  $res=mysql_query($sql);
-  while($rows=mysql_fetch_array($res)){
+  $res=mysqli_query($conn,$sql);
+  while($rows=mysqli_fetch_array($res)){
 ?>
     <tr bgcolor="#EFEFEF">
       <td height="25" align="center" bgcolor="#FFFFFF"><?php echo $rows['id']?></td>

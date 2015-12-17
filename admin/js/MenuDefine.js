@@ -22,8 +22,8 @@
 	OB_LabelFontSize=9;										//LOGO下面的字体大小
 	OB_LabelFontColor="000000";						//LOGO下的字体颜色
 	OB_LabelMargin=3;											//margin between labels and icons
-	OB_UpArrow="/Images/Menu/arrowup1.gif";				//向上滚动的logo箭头	
-	OB_DownArrow="/Images/Menu/arrowdown1.gif";		//向下滚动的logo箭头
+	OB_UpArrow="../images/arrow.gif";				//向上滚动的logo箭头
+	OB_DownArrow="../images/arrow.gif";		//向下滚动的logo箭头
 	OB_ArrowWidth=16;											//箭头的宽度
 	OB_ArrowHeight=16;										//箭头的高度
 	OB_ArrowSlideSpeed=60;								//项目列表滚动的速度；

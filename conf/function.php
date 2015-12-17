@@ -1,5 +1,5 @@
 <?php
-
+include('conn.php');
 function ChgTitle($title,$len) 
 { 
   $length = $len; 
@@ -112,6 +112,7 @@ function cutstr($string, $length, $dot = ' ...') {
 
 
 function name($nav_table,$id){
+  include('conn.php');
   $sql="select * from $nav_table where id='$id'";
   $res=mysqli_query($conn,$sql);
   $rows=mysqli_fetch_array($res);
@@ -120,6 +121,7 @@ function name($nav_table,$id){
 }
 
 function title($table,$id){
+  include('conn.php');
   $sql="select * from $table where id='$id'";
   $res=mysqli_query($conn,$sql);
   $rows=mysqli_fetch_array($res);
@@ -130,6 +132,7 @@ function title($table,$id){
 
 
 function type1($table,$id){
+  include('conn.php');
   $sql="select type1 from $table where id='$id'";
   $res=mysqli_query($conn,$sql);
   $rows=mysqli_fetch_array($res);
@@ -138,6 +141,7 @@ function type1($table,$id){
 }
 
 function main_id($table,$link){
+  include('conn.php');
   $sql="select id from $table where link='$link'";
   $res=mysqli_query($conn,$sql);
   $rows=mysqli_fetch_array($res);
@@ -147,6 +151,7 @@ function main_id($table,$link){
 
 
 function pro_class_name($id){
+  include('conn.php');
   $sql="select * from pro where id='$id'";
   $res=mysqli_query($conn,$sql);
   $rows=mysqli_fetch_array($res);

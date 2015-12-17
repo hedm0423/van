@@ -24,8 +24,8 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height:26px;">
 <?php
 $sql_1="select * from $table where level='1' and (type1='news' or type1='pro') and id<>'1' order by sx,id asc";
-$res_1=mysql_query($sql_1);
-while($rows_1=mysql_fetch_array($res_1)){
+$res_1=mysqli_query($conn,$sql_1);
+while($rows_1=mysqli_fetch_array($res_1)){
 ?>
   <tr>
 	<td align="left" width="100%" style="border-bottom:solid 1px #000; padding-left:15px;"><?php echo $rows_1['name']?><a href="add5.php?news_class=<?=$rows_1['id']?>" style="color:#000000; margin-left:15px;">编辑</a></td>

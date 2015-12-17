@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 include ("head_contact.php");
+include("conf/conn.php")
 ?>
 <?php
   if ($bs=="add"){
@@ -14,9 +15,9 @@ include ("head_contact.php");
 	 
 	    $date = mktime(date("H")+8,date("i"),date("s"),date("m"),date("d"), date("Y")); 
 	    $uptime=date("Y-m-d H:i:s",$date);
-    $sql_add="insert into $gbook_table (id,comp,name,sex,email,tel,fax,address,title,cont,uptime)  values(null,'$comp','$name','','$email','$qq','','','','$cont','$uptime')";
+    $sql_add="insert into $gbook_table (id,comp,name,sex,email,tel,fax,address,title,cont,uptime)  values(null,'$comp','$name','$Sex','$email','$qq','','','','$cont','$uptime')";
 	//echo $sql_add;
-    $res_add=mysql_query($sql_add);
+    $res_add=mysqli_query($conn,$sql_add);
     echo "<script>alert('留言成功！');</script>";
 	  
 	}
@@ -28,8 +29,8 @@ include ("head_contact.php");
 <?php
 $sql="select * from $gbook_table where fax='1' order by id desc";
 //echo $sql;
-$res=mysql_query($sql);
-while($rows=mysql_fetch_array($res)){
+$res=mysqli_query($conn,$sql);
+while($rows=mysqli_fetch_array($res)){
 ?>	
 	
 	<div class="list">

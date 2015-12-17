@@ -19,8 +19,8 @@ if ($bs==1){
   makethumb($filepath.$img1,$small,"74","42");
   copy($upfile1,$filepath.$img1);
   $sql="select * from $jd_table ";
-  $res=mysql_query($sql);
-  $a=mysql_num_rows($res);#行数
+  $res=mysqli_query($conn,$sql);
+  $a=mysqli_num_rows($res);#行数
   if ($a==0){
     $sql="insert into $jd_table (id,pic1,pic2,pic3,pic4,pic5,pic6,dz1,dz2,dz3,dz4,dz5,dz6)  values(null,'$img1','','','','','','$dz1','','','','','') ";
   }
@@ -31,7 +31,7 @@ if ($bs==1){
    else
     $sql="update $jd_table set  dz1='$dz1' ";
   } 
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
   //echo mysql_error();
 }
 elseif ($bs==2){
@@ -48,7 +48,7 @@ elseif ($bs==2){
   copy($upfile2,$filepath.$img2);
 
   $sql="select * from $jd_table ";
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
   $a=mysql_num_rows($res);#行数
   if ($a==0){
     $sql="insert into $jd_table (id,pic1,pic2,pic3,pic4,pic5,pic6,dz1,dz2,dz3,dz4,dz5,dz6)  values(null,'','$img2','','','','','','$dz2','','','','') ";
@@ -60,7 +60,7 @@ elseif ($bs==2){
 	else
       $sql="update $jd_table set  dz2='$dz2' ";
   } 
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
 }
 elseif ($bs==3){
   $upfile3=$_FILES['upfile3']['tmp_name']; 
@@ -74,8 +74,8 @@ elseif ($bs==3){
   makethumb($filepath.$img3,$small,"74","42");
   copy($upfile3,$filepath.$img3);
   $sql="select * from $jd_table ";
-  $res=mysql_query($sql);
-  $a=mysql_num_rows($res);#行数
+  $res=mysqli_query($conn,$sql);
+  $a=mysqli_num_rows($res);#行数
   if ($a==0){
     $sql="insert into $jd_table (id,pic1,pic2,pic3,pic4,pic5,pic6,dz1,dz2,dz3,dz4,dz5,dz6)  values(null,'','','$img3','','','','','','$dz3','','','') ";
   }
@@ -85,7 +85,7 @@ elseif ($bs==3){
     else
       $sql="update $jd_table set dz3='$dz3' ";
   } 
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
 }
 elseif ($bs==4){
   $upfile4=$_FILES['upfile4']['tmp_name']; 
@@ -99,8 +99,8 @@ elseif ($bs==4){
   makethumb($filepath.$img4,$small,"74","42");
   copy($upfile4,$filepath.$img4);
   $sql="select * from $jd_table ";
-  $res=mysql_query($sql);
-  $a=mysql_num_rows($res);#行数
+  $res=mysqli_query($conn,$sql);
+  $a=mysqli_num_rows($res);#行数
   if ($a==0){
     $sql="insert into $jd_table (id,pic1,pic2,pic3,pic4,pic5,pic6,dz1,dz2,dz3,dz4,dz5,dz6)  values(null,'','','','$img4','','','','','','$dz4','','') ";
   }
@@ -110,11 +110,11 @@ elseif ($bs==4){
     else
       $sql="update $jd_table set dz4='$dz4' ";
   } 
-  $res=mysql_query($sql);
+  $res=mysqli_query($conn,$sql);
 }  
     $sql="select * from $jd_table ";
-    $res=mysql_query($sql);
-	$rows=mysql_fetch_array($res);
+    $res=mysqli_query($conn,$sql);
+	$rows=mysqli_fetch_array($res);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -5,7 +5,7 @@
   if ($bs==1)
   {
     $query="delete from down where id='$id' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,16 +37,16 @@
     </tr>
 <?php
   $sql="select * from down";
-  $res=mysql_query($sql,$conn);
+  $res=mysqli_query($conn,$sql);
   $total=mysql_num_rows($res);
   pageft($total,6);
   $sql="select * from down order by id desc limit $firstcount,$displaypg ";
-  $res=mysql_query($sql,$conn);
+  $res=mysqli_query($conn,$sql);
   if (strlen($res)==0)
     echo "NO DATE";
   else	
    
-  while ($rows=mysql_fetch_array($res))
+  while ($rows=mysqli_fetch_array($res))
   {
     $id = $rows['id'];
 ?>

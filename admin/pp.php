@@ -33,8 +33,8 @@ function deldir($dir,$file) {
     $table=$dt;
   }*/
   $sql="select * from $table where id='$id'";
-  $res=mysql_query($sql,$conn);
-  $rows=mysql_fetch_array($res);
+  $res=mysqli_query($conn,$sql);
+  $rows=mysqli_fetch_array($res);
   if($rows['img'])
     $imgx=$rows['img'];
   else
@@ -63,7 +63,7 @@ function deldir($dir,$file) {
     copy($upfile1,$dir.$img1);
 	if($id){
       $query="update $table set img='$imgx' where id='$id' "; 
-      $res=mysql_query($query, $conn);
+      $res=mysqli_query($conn,$query);
 	}	
 	 echo "<script>parent.document.form1.pp.value='$imgx';window.close();</script>"; 
   }
@@ -72,7 +72,7 @@ function deldir($dir,$file) {
     deldir($dir,$file);
     $imgx=str_replace($file.'/',"",trim($imgx));
     $query="update $table set img='$imgx' where id='$id' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
     if ($res)
       echo "<script>parent.document.form1.pp.value='$imgx';window.close();</script>";
     }

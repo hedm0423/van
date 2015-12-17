@@ -5,8 +5,8 @@ include ('../conf/function.php');
 $table="product";
 if ($id){
   $sql_cx="select * from $table where id='$id'";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
   $bs='mnews';
 }
 else{
@@ -56,7 +56,7 @@ $cont=str_replace($str1,$str2,$cont);
 
  
   $sql_add="insert into $table (id,pro_class,pro_class1,type1,name,cont,img,uptime,cont1,num_pro,price1,price2,size,index_show)  values(null,'$pro_class_arr[0]','$pro_class_arr[1]','','$name','$cont','$img','$uptime','$cont1','$num_pro','$price1','$price2','$size','$index_show')";
-  $res_add=mysql_query($sql_add);
+  $res_add=mysqli_query($sql_add);
   //echo $sql_add;
  //echo mysql_error();
   if ($res_add){
@@ -79,7 +79,7 @@ $cont=str_replace($str1,$str2,$cont);
   }
   else
     $sql_modify="update $table set name='$name',cont='$cont',img='$img',cont1='$cont1',num_pro='$num_pro',price1='$price1',price2='$price2',size='$size',index_show='$index_show' where id='$id'";
-  $res_modify=mysql_query($sql_modify);
+  $res_modify=mysqli_query($conn,$sql_modify);
   if ($res_modify){
     echo "成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=".$table.".php'>";

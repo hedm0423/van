@@ -6,7 +6,7 @@
   $table=$nav_table;
   if ($bs=="dele" && $did){
     $query="delete from $table where id='$did' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,11 +29,11 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height:26px;">
 <?php
 $sql_1="select * from $table where level='1' and type1='dy' order by sx,id asc";
-$res_1=mysql_query($sql_1);
+$res_1=mysqli_query($conn,$sql_1);
 $i=1;
 $k=1;
 $j=1;
-while($rows_1=mysql_fetch_array($res_1)){
+while($rows_1=mysqli_fetch_array($res_1)){
 ?>
   <tr>
     <td width="10%" height="26" align="center"  style="border-top:solid 1px #000;border-bottom:solid 1px #000"><b>大类：</b></td>
@@ -45,8 +45,8 @@ while($rows_1=mysql_fetch_array($res_1)){
      <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <?php
 $sql_2="select * from $table where level='2' and up_id='".$rows_1['id']."' and type1='dy' order by sx,id asc";
-$res_2=mysql_query($sql_2);
-while($rows_2=mysql_fetch_array($res_2)){
+$res_2=mysqli_query($conn,$sql_2);
+while($rows_2=mysqli_fetch_array($res_2)){
 ?>
        <tr>
          <td width="10%" style="padding-left:100px;">&nbsp;</td>  
@@ -57,8 +57,8 @@ while($rows_2=mysql_fetch_array($res_2)){
 
 <?php
 $sql_3="select * from $table where level='3' and up_id='".$rows_2['id']."' and type1='dy' order by sx,id asc";
-$res_3=mysql_query($sql_3);
-while($rows_3=mysql_fetch_array($res_3)){
+$res_3=mysqli_query($conn,$sql_3);
+while($rows_3=mysqli_fetch_array($res_3)){
 ?>
        <tr>
          <td width="10%" style="padding-left:100px;">&nbsp;</td>  

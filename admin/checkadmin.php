@@ -8,8 +8,8 @@
    else
       echo "<meta http-equiv=refresh content=2;url='index.php'>"; 
    $sql="select username,password from $login_table where username='$username' and password='$password' "; 
-   $res=mysql_query($sql); 
-   if(mysql_num_rows($res)!=1) 
+   $res=mysqli_query($conn,$sql);
+   if(mysqli_num_rows($res)!=1)
    { 
       echo "error!"; 
       echo "<meta http-equiv=refresh content=2;url='login.php'>"; 

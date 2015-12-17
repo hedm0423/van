@@ -2,8 +2,8 @@
   error_reporting(0); 
   include ("../conf/conn.php");
   $sql="select * from $login_table ";
-  $res=mysql_query($sql,$conn);
-  $rows=mysql_fetch_array($res);
+  $res=mysqli_query($conn,$sql);
+  $rows=mysqli_fetch_array($res);
   $username=$rows['username'];
   $password=$rows['password'];
   $id=$rows['id'];
@@ -14,14 +14,14 @@
     $password1=$_POST['password1'];
 	
 	$sql="select * from $login_table where id='$id'";
-	$res=mysql_query($sql,$conn);
-	$rows=mysql_fetch_array($res);
+	$res=mysqli_query($conn,$sql);
+	$rows=mysqli_fetch_array($res);
 	
 	$passworda=$rows['password'];
 	if ($password==$passworda)
 	{
       $sql="update $login_table set username='$username',password='$password1' where id='$id'";
-	  $res1=mysql_query($sql,$conn);
+	  $res1=mysqli_query($conn,$sql);
 	}
 	else
 	{

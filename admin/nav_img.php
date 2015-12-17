@@ -37,7 +37,7 @@ if ($bs==1){
   }
   if ($b_link){
     $sql="update $table set b_link='$b_link' where id='$id'";
-	$res=mysql_query($sql);
+	$res=mysqli_query($conn,$sql);
   }
 }  
 if ($bs==2){
@@ -48,12 +48,12 @@ if ($bs==2){
     $img2=date("Ymdhis").".".$hz2;
   if(copy($upfile2,$filepath.$img2)){
     $sql="update $table set img_s1='$img2',s_link='$s_link' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
   }
   if ($s_link){
     $sql="update $table set s_link='$s_link' where id='$id'";
-	$res=mysql_query($sql);
+	$res=mysqli_query($conn,$sql);
   }
 }  
 elseif ($bs==3){
@@ -64,7 +64,7 @@ elseif ($bs==3){
     $img3=date("Ymdhis").".".$hz3;
   if(copy($upfile3,$filepath.$img3)){
     $sql="update $table set img_s2='$img3' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
   }
 } 
@@ -76,28 +76,28 @@ elseif ($bs==4){
     $img4=date("Ymdhis").".".$hz4;
   if(copy($upfile4,$filepath.$img4)){
     $sql="update $table set img_nav='$img4' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
   }
 }
 elseif ($bs==5){
     $sql="update $table set nav_title='$nav_title' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
 }   
 elseif ($bs==6){
     $sql="update $table set nav_cont='$nav_cont' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
 }   
 elseif ($bs=='dele' && $bs1){
     $sql="update $table set $bs1='' where id='$id'";
-    $res=mysql_query($sql);
+    $res=mysqli_query($conn,$sql);
 	echo "OK";
 } 
     $sql="select * from $table where id='$id' ";
-    $res=mysql_query($sql);
-	$rows=mysql_fetch_array($res);  
+    $res=mysqli_query($conn,$sql);
+	$rows=mysqli_fetch_array($res);
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#666666">

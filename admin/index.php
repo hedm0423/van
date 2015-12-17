@@ -76,7 +76,9 @@ function HideMenu1(){
         <tr>
           <td align="center" valign="top" bgcolor="#4B4B4B">
 		  <div style="margin:0">
-		    <iframe id="leftFrame" width=95 style="Z-INDEX: 0; VISIBILITY: inherit; WIDTH: 100px; HEIGHT: 490px;margin:0; padding:0;" name="leftFrame" src="Left.php" frameborder=0   scrolling=no valign=top></iframe></div></td>
+		    <iframe id="leftFrame" width=95 style="Z-INDEX: 0; VISIBILITY: inherit; WIDTH: 100px; HEIGHT: 490px;margin:0; padding:0;" name="leftFrame" src="Left.php" frameborder=0   scrolling=no valign=top></iframe>
+          </div>
+          </td>
 		  <td width=10 height="100%" style="WIDTH: 10pt height:100%" id="BtnHide" onClick="HideMenu()" background="./images/04.gif">
 		    <img src="./images/opens.gif" id="BtnHideImg"  height="26"></td>
           <td width="99%" height="490" valign="top" bgcolor="#FFFFFF" class="table_1">

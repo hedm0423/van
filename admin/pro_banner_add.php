@@ -5,9 +5,9 @@ include ('../conf/function.php');
 $table=$pro_table;
 
   $sql_cx="select * from $table where pro_class1='' and pro_class='' order by id desc limit 0,1";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
-  $rows_cx_num=mysql_num_rows($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
+  $rows_cx_num=mysqli_num_rows($res_cx);
   if ($rows_cx_num)
     $bs='mnews';
   else{
@@ -19,7 +19,7 @@ if ($bs1=='addnews'){
   $cont=$_POST['FCKeditor1'];
   $uptime=date("Y-m-d"." "."h:i:s");
   $sql_add="insert into $table (id,pro_class,pro_class1,type1,name,cont,img,uptime)  values(null,'','','','','$cont','$img','$uptime')";
-  $res_add=mysql_query($sql_add);
+  $res_add=mysqli_query($conn,$sql_add);
   //echo  $sql_add;
   //echo mysql_error();
   if ($res_add){
@@ -32,7 +32,7 @@ else if ($bs1=='mnews'){
   $cont=$_POST['FCKeditor1'];
   $sql_modify="update $table set cont='$cont',uptime='$uptime' where pro_class1='' and pro_class=''";
   // echo  $sql_modify;
- $res_modify=mysql_query($sql_modify);
+ $res_modify=mysqli_query($conn,$sql_modify);
   if ($res_modify){
     echo "成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=pro_banner_add.php'>";

@@ -5,8 +5,8 @@ include ('../conf/function.php');
 $table=$case_table;
 if ($id){
   $sql_cx="select * from $table where id='$id'";
-  $res_cx=mysql_query($sql_cx);
-  $rows_cx=mysql_fetch_array($res_cx);
+  $res_cx=mysqli_query($conn,$sql_cx);
+  $rows_cx=mysqli_fetch_array($res_cx);
   $bs='mnews';
 }
 else{
@@ -22,7 +22,7 @@ if ($bs1=='addnews'){
     $news_class_arr[1]=$news_class_arr[0];
 
   $sql_add="insert into $table (id,case_class,case_class1,title,cont,cont1,img,uptime)  values(null,'$news_class_arr[0]','$news_class_arr[1]','$title','$cont','$cont1','$img','$uptime')";
-  $res_add=mysql_query($sql_add);
+  $res_add=mysqli_query($conn,$sql_add);
   //echo $sql_add;
   //echo mysql_error();
   if ($res_add){
@@ -41,7 +41,7 @@ else if ($bs1=='mnews'){
   else
     $sql_modify="update $table set title='$title',cont='$cont',cont1='$cont1',img='$img' where id='$id'";
   
-  $res_modify=mysql_query($sql_modify);
+  $res_modify=mysqli_query($conn,$sql_modify);
   if ($res_modify){
     echo "成功!";
     echo "<meta HTTP-EQUIV='REFRESH' CONTENT='1; URL=case.php'>";

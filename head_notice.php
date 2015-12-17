@@ -28,8 +28,8 @@
 <?php
 if ($id){
 $sql="select * from $news_table where id='$id' ";
-$res=mysql_query($sql);
-$rows=mysql_fetch_array($res);
+$res=mysqli_query($conn,$sql);
+$rows=mysqli_fetch_array($res);
  echo $rows['title'];
 }
 else echo "全部";

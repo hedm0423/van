@@ -13,12 +13,16 @@ while(i>0)
 	if(i==1)
 	{
 		document.write("<INPUT position='UP' id='OB_Button1' onDblClick='OutlookLikeBar.FolderClicked("+i+");this.blur()' onClick='OutlookLikeBar.FolderClicked("+i+");this.blur()' TYPE='button' value='"+Folder[0]+"' style='position:absolute;top:0;left:0;width:90;height:"+OB_ButtonHeight+";font-family:"+OB_ButtonFontFamily+";font-size:"+OB_ButtonFontSize+"pt;cursor:hand;color:"+OB_ButtonFontColor+";z-index:100;border:1px #404040 solid'>");
-		MakeItems(Folder,i,OB_ButtonHeight);		
+		var button = document.getElementById('OB_Button'+i);
+		button.setAttribute('position','UP');
+		MakeItems(Folder,i,OB_ButtonHeight);
 	}
 	else if(i!=6)
 	{
 		document.write("<INPUT position='DOWN' id='OB_Button"+i+"' onDblClick='OutlookLikeBar.FolderClicked("+i+");this.blur()' onClick='OutlookLikeBar.FolderClicked("+i+");this.blur()' TYPE='button' value='"+Folder[0]+"' style='position:absolute;top:"+(OB_Height-(j-i)*OB_ButtonHeight-OB_BorderWidth*2)+";left:0;width:90;height:"+OB_ButtonHeight+";font-family:"+OB_ButtonFontFamily+";font-size:"+OB_ButtonFontSize+"pt;cursor:hand;color:"+OB_ButtonFontColor+";z-index:100;border:1px #404040 solid'>");
-		MakeItems(Folder,i,(OB_Height-(j-i)*OB_ButtonHeight-OB_BorderWidth*2)+OB_ButtonHeight);		
+		var button = document.getElementById('OB_Button'+i);
+		button.setAttribute('position','DOWN');
+		MakeItems(Folder,i,(OB_Height-(j-i)*OB_ButtonHeight-OB_BorderWidth*2)+OB_ButtonHeight);
 	}
 	else
 	{
@@ -63,8 +67,10 @@ function MakeItems(Folder,zorder,top,isSmallIcon)
 	document.write("<DIV align=center id='OB_Folder"+zorder+"' style='position:absolute;left:0;top:"+top+";width:"+folderWidth+";height:"+(OB_Margin*2+items*(OB_IconsHeight+OB_LabelFontSize+OB_LabelMargin)+(items-1)*OB_ItemsSpacing)+";z-index:"+zorder+";clip:rect(0 0 0 0);'>");
 	for(var i=1;i<items*4;i+=4)
 	{
-		document.write("<div targetFrame='"+Folder[i+3]+"' link='"+Folder[i+2]+"' onMouseDown='OutlookLikeBar.ItemClicked(this)' onMouseUp='OutlookLikeBar.ItemSelected(this)' onMouseOver='OutlookLikeBar.OverItems(this)' onMouseOut='OutlookLikeBar.OutItems(this)' style='position:absolute;left:"+(Math.ceil((OB_Width-OB_BorderWidth*2-OB_IconsHeight)/2)-1)+";top:"+(OB_Margin+Math.ceil((i-1)/4)*(OB_ItemsSpacing+OB_LabelFontSize+OB_IconsHeight))+";cursor:hand;clip:rect(0 "+OB_IconsWidth+" "+OB_IconsHeight+" 0;width:"+OB_IconsWidth+";height:"+OB_IconsHeight+"'>");
- 		document.write("<img src='"+Folder[i]+"' alt='"+Folder[i+1]+"'>");
+		document.write("<div id='TF"+zorder+i+"' targetFrame='"+Folder[i+3]+"' link='"+Folder[i+2]+"' onMouseDown='OutlookLikeBar.ItemClicked(this)' onMouseUp='OutlookLikeBar.ItemSelected(this)' onMouseOver='OutlookLikeBar.OverItems(this)' onMouseOut='OutlookLikeBar.OutItems(this)' style='position:absolute;left:"+(Math.ceil((OB_Width-OB_BorderWidth*2-OB_IconsHeight)/2)-1)+";top:"+(OB_Margin+Math.ceil((i-1)/4)*(OB_ItemsSpacing+OB_LabelFontSize+OB_IconsHeight))+";cursor:hand;clip:rect(0 "+OB_IconsWidth+" "+OB_IconsHeight+" 0;width:"+OB_IconsWidth+";height:"+OB_IconsHeight+"'>");
+ 		var tflink = document.getElementById('TF'+zorder+i);
+		tflink.setAttribute('link',Folder[i+2]);
+		document.write("<img src='"+Folder[i]+"' alt='"+Folder[i+1]+"'>");
 		document.write("</div>");
 		//document.write("<div targetFrame='"+Folder[i+3]+"' link='"+Folder[i+2]+"' onMouseDown='OutlookLikeBar.ItemClicked(this)' onMouseUp='OutlookLikeBar.ItemSelected(this)' onMouseOver='OutlookLikeBar.OverItems(this)' onMouseOut='OutlookLikeBar.OutItems(this)' style='position:absolute;left:"+(Math.ceil((OB_Width-OB_BorderWidth*2-OB_IconsHeight)/2)-1)+";top:"+(OB_Margin+Math.ceil((i-1)/4)*(OB_ItemsSpacing+OB_LabelFontSize+OB_IconsHeight))+";cursor:hand;clip:rect(0 "+OB_IconsWidth+" "+OB_IconsHeight+" 0;width:"+OB_IconsWidth+";height:"+OB_IconsHeight+"'>");
  		//document.write("<img src='"+Folder[i]+"' alt='"+Folder[i+1]+"'>");
@@ -126,10 +132,11 @@ function FolderClicked(folder)
 	this.slideStep=1;
 	this.countStep=0;
 	this.HideArrows();
-	this.SlideFolders(folder,document.all["OB_Button"+folder].position=="DOWN");
+	var tmp = document.getElementById("OB_Button"+folder);
+	this.SlideFolders(folder,tmp.attributes['position'].nodeValue=="DOWN");
 }
 
-function SlideFolders(folder,down)
+/*function SlideFolders(folder,down)
 {
 	var step;	
 	if(down)
@@ -202,29 +209,197 @@ function SlideFolders(folder,down)
 			this.sliding=false;		
 		}		
 	}
+}*/
+/*function SlideFolders(folder,down)
+{
+	var step;
+	if(down)
+	{
+		this.slideCount-=Math.floor(this.slideStep);
+		if(this.slideCount<0)
+			this.slideStep+=this.slideCount;
+		step=Math.floor(this.slideStep);
+		var tmp;
+		for(var i=2;i<=folder;i++) {
+			tmp = document.getElementById("OB_Button" + i);
+			if (tmp.attributes['position'].nodeValue == "DOWN") {
+				document.all["OB_Button" + i].style.pixelTop -= step;
+				document.all["OB_Folder" + i].style.pixelTop -= step;
+			}
+		}
+		filter = /rect\((\d*)px (\d*)px (\d*)px (\d*)px\)/;
+
+		var clipString=document.all["OB_Folder"+folder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(folder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])+step),0);
+
+		var clipString=document.all["OB_Folder"+this.currentFolder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(this.currentFolder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])-step),0);
+
+		this.slideStep*=this.slideSpeed;
+		if(this.slideCount>0)
+			setTimeout("OutlookLikeBar.SlideFolders("+folder+",true)",20);
+		else
+		{
+			for(var k=2;k<=folder;k++)
+			{
+				tmp = document.getElementById('OB_Button'+k);
+				tmp.setAttribute('position','UP');
+			}
+			this.currentFolder=folder;
+			this.SetArrows();
+			this.sliding=false;
+		}
+	}
+	else
+	{
+		this.slideCount-=Math.floor(this.slideStep);
+		if(this.slideCount<0)
+			this.slideStep+=this.slideCount;
+		step=Math.floor(this.slideStep);
+		for(var i=folder+1;i<=this.items;i++)
+			if(document.all["OB_Button"+i].position=="UP")
+			{
+				document.all["OB_Button"+i].style.pixelTop+=step;
+				document.all["OB_Folder"+i].style.pixelTop+=step;
+			}
+
+		filter = /rect\((\d*)px (\d*)px (\d*)px (\d*)px\)/;
+
+		var clipString=document.all["OB_Folder"+folder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(folder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])+step),0);
+
+		var clipString=document.all["OB_Folder"+this.currentFolder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(this.currentFolder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])-step),0);
+
+		this.slideStep*=this.slideSpeed;
+		if(this.slideCount>0)
+			setTimeout("OutlookLikeBar.SlideFolders("+folder+",false)",20);
+		else
+		{
+			for(var k=folder+1;k<=this.items;k++)
+				document.all["OB_Button"+k].position="DOWN";
+			this.currentFolder=folder;
+			this.SetArrows();
+			this.sliding=false;
+		}
+	}
+}
+*/
+function SlideFolders(folder,down)
+{
+	var step;
+	var topButton,topFolder;
+	if(down)
+	{
+		this.slideCount-=Math.floor(this.slideStep);
+		if(this.slideCount<0)
+			this.slideStep+=this.slideCount;
+		step=Math.floor(this.slideStep);
+		var tmp;
+		for(var i=2;i<=folder;i++) {
+			tmp = document.getElementById("OB_Button" + i);
+			if (tmp.attributes['position'].nodeValue == "DOWN") {
+				topButton = parseInt(document.all["OB_Button"+i].style.top) - step;
+				 document.all["OB_Button" + i].style.top = topButton + 'px';
+				topFolder = parseInt(document.all["OB_Folder"+i].style.top) - step;
+				document.all["OB_Folder" + i].style.top = topFolder + 'px';
+			}
+		}
+		filter = /rect\((\d*)px (\d*)px (\d*)px (\d*)px\)/;
+
+		var clipString=document.all["OB_Folder"+folder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(folder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])+step),0);
+
+		var clipString=document.all["OB_Folder"+this.currentFolder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(this.currentFolder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])-step),0);
+
+		this.slideStep*=this.slideSpeed;
+		if(this.slideCount>0)
+			setTimeout("OutlookLikeBar.SlideFolders("+folder+",true)",20);
+		else
+		{
+			for(var k=2;k<=folder;k++)
+			{
+				tmp = document.getElementById('OB_Button'+k);
+				tmp.setAttribute('position','UP');
+			}
+			this.currentFolder=folder;
+			this.SetArrows();
+			this.sliding=false;
+		}
+	}
+	else
+	{
+		this.slideCount-=Math.floor(this.slideStep);
+		if(this.slideCount<0)
+			this.slideStep+=this.slideCount;
+		step=Math.floor(this.slideStep);
+		for(var i=folder+1;i<=this.items;i++) {
+			var tmp = document.getElementById("OB_Button"+i);
+			if (tmp.attributes['position'].nodeValue == "UP") {
+				topButton = parseInt(document.all["OB_Button" + i].style.top) + step;
+				document.all["OB_Button" + i].style.top = topButton + 'px';
+				topFolder = parseInt(document.all["OB_Folder" + i].style.top) + step;
+				document.all["OB_Folder" + i].style.top = topFolder + 'px';
+			}
+		}
+		filter = /rect\((\d*)px (\d*)px (\d*)px (\d*)px\)/;
+
+		var clipString=document.all["OB_Folder"+folder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(folder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])+step),0);
+
+		var clipString=document.all["OB_Folder"+this.currentFolder].style.clip;
+		var clip=clipString.match(filter);
+		this.ClipFolder(this.currentFolder,parseInt(clip[1]),this.visibleAreaWidth,(parseInt(clip[3])-step),0);
+
+		this.slideStep*=this.slideSpeed;
+		if(this.slideCount>0)
+			setTimeout("OutlookLikeBar.SlideFolders("+folder+",false)",20);
+		else
+		{
+			for(var k=folder+1;k<=this.items;k++)
+			{
+				var tmp = document.getElementById('OB_Button'+k);
+				tmp.setAttribute('position','DOWN');
+			}
+			this.currentFolder=folder;
+			this.SetArrows();
+			this.sliding=false;
+		}
+	}
 }
 
 function ItemClicked(item)
 {
-	if(this.sliding)
-		return;		
+	//if(this.sliding)
+	//	return;
 	item.style.border="2 inset #ffffff";
 }
 
 function ItemSelected(item)
 {
-	if(this.sliding)
-		return;		
+	//alert(item.link);
+	//if(this.sliding)
+	//	return;
 	//alert(item.link);
 
-	item.style.border="1 outset #ffffff";
-	if(item.link.indexOf("javascript")!=-1) 
-		{	eval(item.link);
+	//item.style.border="1 outset #ffffff";
+	var itemlink = item.attributes['link'].nodeValue;
+	//if(item.link.indexOf("javascript")!=-1)
+	if(1 == 1)
+		{	eval(item.attributes['link'].nodeValue);
 			//alert(item.link);
 		//document.write("http://www.wps2000.net");
 		}
 	else 
-		eval(item.targetFrame+".location='"+item.link+"'");
+		eval(item.targetFrame+".location='"+item.attributes['link'].nodeValue+"'");
 }
 
 function OverItems(item)
@@ -272,7 +447,7 @@ function OutArrow(arrow)
 
 function ClipFolder(folder,top,right,bottom,left)
 {
-	document.all["OB_Folder"+folder].style.clip=clip='rect('+top+' '+right+' '+bottom+' '+left+')';
+	document.all["OB_Folder"+folder].style.clip='rect('+top+' '+right+' '+bottom+' '+left+')';
 }
 
 function Start()

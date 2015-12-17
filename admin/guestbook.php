@@ -5,18 +5,18 @@
   $table=$gbook_table;
   if ($bs=="dele" && $did){
     $query="delete from $table where id='$did' "; 
-    $res=mysql_query($query, $conn);
+    $res=mysqli_query($conn,$query);
   }
   $pic1="../images/boy.gif";
   $pic2="../images/girl.gif";
   
   if ($bs=="sh" && $id){
     $sql_sh="update $table set fax='1' where id='$id'";
-	$res_sh=mysql_query($sql_sh);
+	$res_sh=mysqli_query($conn,$sql_sh);
   }
   elseif ($bs=='nsh' && $id){
     $sql_sh="update $table set fax='0' where id='$id'";
-	$res_sh=mysql_query($sql_sh);
+	$res_sh=mysqli_query($conn,$sql_sh);
   }
   
 ?>
@@ -35,7 +35,7 @@
 if ($bs=="re"){
   $sql1="update $gbook_table set address='$address' where id='$id1'";
   //echo "sql1:".$sql1;
-  $res1=mysql_query($sql1);
+  $res1=mysqli_query($conn,$sql1);
   if($res1)echo "回复成功";
 }
 ?>
@@ -58,16 +58,17 @@ if ($bs=="re"){
     </tr>
     <?php
   $sql="select * from $table  ";
-  $res=mysql_query($sql,$conn);
-  $total=mysql_num_rows($res);
+  $res=mysqli_query($conn,$sql);
+  $total=mysqli_num_rows($res);
   pageft($total,10);
   $sql="select * from $table order by id desc limit $firstcount,$displaypg ";
-  $res=mysql_query($sql,$conn);
-  if (strlen($res)==0)
+  $res=mysqli_query($conn,$sql);
+  //if (strlen($res)==0)
+  if(mysqli_num_rows($res)==0)
     echo "NO DATE";
   else	
    
-  while ($rows=mysql_fetch_array($res))
+  while ($rows=mysqli_fetch_array($res))
   {
 ?>
     <tr style="font-size:12px;">

@@ -28,7 +28,7 @@ error_reporting(E_ALL ^E_NOTICE);
 	  {
         //因为URL中可能包含了页码信息，我们要把它去掉，以便加入新的页码信息。
         //这里用到了正则表达式，请参考“PHP中的正规表达式”（http://www.pconline.com.cn/pcedu/empolder/wz/php/10111/15058.html）
-        $url_query=ereg_replace("(^|&)page=$page","",$url_query);
+        $url_query=preg_replace("/(^|&)page=$page/","",$url_query);
         //将处理后的URL的查询字串替换原来的URL的查询字串：
         $url=str_replace($parse_url["query"],$url_query,$url);
         //在URL后加page查询信息，但待赋值
